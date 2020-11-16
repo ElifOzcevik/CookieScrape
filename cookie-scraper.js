@@ -7,18 +7,21 @@ class CookieScraper {
 
     async scrape(url) {
 
-        const browser = await puppeteer.launch();
+          try{
+            const browser = await puppeteer.launch();
 
-        const page = await browser.newPage();
-        await page.goto(url);
+            const page = await browser.newPage();
+            await page.goto(url);
 
-        let cookies = await page.cookies();
-        let cookiesJSON = JSON.stringify(cookies,null,4);
+            let cookies = await page.cookies();
+            let cookiesJSON = JSON.stringify(cookies,null,4);
 
-        let x = cookiesJSON;
-     
-       return (x); 
-      
+            let x = cookiesJSON;
+        
+            return (x);
+        } catch ( e ) {
+            return (`Error: ${e.message}`); 
+     } 
      
     }
 }
